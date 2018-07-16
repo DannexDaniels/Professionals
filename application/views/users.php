@@ -39,8 +39,8 @@
                         ?>
                         <div class="span6">
                             <div class="media user">
-                                <a class="media-avatar pull-left" href="#">
-                                    <img src="<?php echo base_url('images')?>/user.png">
+                                <a class="media-avatar pull-left" href="<?php echo base_url();?>profile/<?php echo $prof['phone'];?>">
+                                    <img src="<?php echo base_url('images')?>/users/<?php echo $prof['picture']?>">
                                 </a>
                                 <div class="media-body">
                                     <h3 class="media-title">

@@ -22,4 +22,13 @@ class Professionals extends CI_Controller
         $this->load->view('users.php',$data);
         $this->load->view('template/footer.php');
     }
+
+    public function profile($id){
+        $data = $this->professionalsModel->getProfessionalId($id);
+        $this->load->view('template/header.php');
+        $this->load->view('template/top_nav.php');
+        $this->load->view('template/left_nav.php');
+        $this->load->view('profile.php',$data);
+        $this->load->view('template/footer.php');
+    }
 }

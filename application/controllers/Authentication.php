@@ -31,9 +31,12 @@ class Authentication extends CI_Controller
         $pass = $this->input->post('password');
         if ($this->authenticationModel->getPassword($user) != null){
             $password = $this->authenticationModel->getPassword($user);
+            $result = $this->authenticationModel->getUser($user);
+
+            $this->session->set_userdata($result);
 
             if ($password === $pass){
-                redirect('home');
+                redirect(base_url('home'));
             }else{
                 print_r("authentication failed");
             }
@@ -64,6 +67,23 @@ class Authentication extends CI_Controller
         $this->authenticationModel->insertAuth($auth);
         $this->authenticationModel->insertUser($data);
 
+
+        //loading the login form
+        $this->load->view('template/header.php');
+        $this->load->view('authentication/login.php');
+        $this->load->view('template/footer.php');
+    }
+
+    public function myProfile(){
+        $this->load->view('template/header.php');
+        $this->load->view('template/top_nav.php');
+        $this->load->view('template/left_nav.php');
+        $this->load->view('profile.php');
+        $this->load->view('template/footer.php');
+    }
+
+    public function logout(){
+        session_destroy();
 
         //loading the login form
         $this->load->view('template/header.php');

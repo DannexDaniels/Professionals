@@ -40,6 +40,10 @@ class AuthenticationModel extends CI_Model
             return null;
         }
     }
+    function getUser($email){
+        $query = $this->db->get_where('user',array('email'=> $email));
+        return $query->row_array();
+    }
 
 }
 
