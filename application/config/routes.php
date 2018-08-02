@@ -52,7 +52,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['createuser'] = 'authentication/createUser';
 $route['createprof'] = 'authentication/createProf';
-$route['profHome'] = 'home/profHome';
 $route['login'] = 'authentication/login';
 $route['authenticate'] = 'authentication/authenticate';
 $route['signup_user'] = 'authentication/signUpUser';
@@ -64,6 +63,8 @@ $route['professionals'] = 'professionals/index';
 $route['chats'] = 'chats/index';
 $route['posts'] = 'posts/index';
 $route['posts/(:any)'] = 'posts/getSpecific/$1';
+$route['addpost'] = 'posts/addPost';
+$route['savepost'] = 'posts/savePost';
 $route['resources'] = 'resources/index';
 $route['default_controller'] = 'authentication/login';
 $route['404_override'] = '';

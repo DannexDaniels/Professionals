@@ -8,7 +8,7 @@
                     <a href="#posts" data-toggle="collapse" class="collapsed"><i class="lnr lnr-code"></i><span>Posts</span> <i class="icon-submenu lnr lnr-chevron-left"></i> </a>
                     <div id="posts" class="collapse">
                         <ul class="nav">
-                            <li><a href="#" class="">Add Posts</a> </li>
+                            <li><a href="addpost" class="">Add Posts</a> </li>
                             <li><a href="<?php echo base_url();?>posts" class="">View All</a></li>
                         </ul>
                     </div>

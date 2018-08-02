@@ -27,7 +27,7 @@
                             <span class="helper-text"><i class="fa fa-lock"></i> <a href="#">Forgot password?</a></span><br /><br />
                             <span class="helper-text"></i>Don't have an account?</span><br />
                             <span class="helper-text"> <a href="signup_user">Create a User Account</a></span><br />
-                            <span class="helper-text"></i> <a href="#">Create a Professional account</a></span>
+                            <span class="helper-text"></i> <a href="signup_prof">Create a Professional account</a></span>
                         </div>
                     <?php echo form_close()?>
                 </div>

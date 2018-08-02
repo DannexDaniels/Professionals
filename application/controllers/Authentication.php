@@ -36,7 +36,8 @@ class Authentication extends CI_Controller
         $user = $this->input->post('email');
         $pass = $this->input->post('password');
         if ($this->authenticationModel->getPassword($user) != null){
-            if ($this->authenticationModel->getUserType($user) != 'prof'){
+            $this->session->set_userdata('user_type',$this->authenticationModel->getUserType($user));
+            if (isset($_SESSION['user_type']) && $_SESSION['user_type'] != 'prof'){
                 $password = $this->authenticationModel->getPassword($user);
                 $result = $this->authenticationModel->getUser($user);
 
@@ -48,18 +49,20 @@ class Authentication extends CI_Controller
                     echo '<script>alert("Wrong password");</script>';
                     $this->login();
                 }
-            }else{
+            }else if (isset($_SESSION['user_type'])){
                 $password = $this->authenticationModel->getPassword($user);
                 $result = $this->authenticationModel->getProf($user);
 
                 $this->session->set_userdata($result);
 
                 if ($password === $pass){
-                    redirect(base_url('profHome'));
+                    redirect(base_url('home'));
                 }else{
                     echo '<script>alert("Wrong password");</script>';
                     $this->login();
                 }
+            }else{
+                die("session not set");
             }
         }else{
             echo '<script>alert("User doesn\'t exist");</script>';

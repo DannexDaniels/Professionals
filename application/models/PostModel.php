@@ -22,4 +22,13 @@ class PostModel extends CI_Model
         $query = $this->db->get_where('posts',array('post_id' => $reference));
         return $query->row_array();
     }
+
+    public function countPost(){
+        $query = $this->db->get('posts');
+        return $query->num_rows();
+    }
+
+    public function savePost($data){
+        $this->db->insert('posts',$data);
+    }
 }

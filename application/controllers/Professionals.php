@@ -15,20 +15,41 @@ class Professionals extends CI_Controller
     }
 
     public function index(){
-        $data['profs'] = $this->professionalsModel->getAllProfessionals();
-        $this->load->view('template/header.php');
-        $this->load->view('template/top_nav.php');
-        $this->load->view('template/left_nav.php');
-        $this->load->view('users.php',$data);
-        $this->load->view('template/footer.php');
+        if(isset($_SESSION['user_type']) && $_SESSION['user_type'] != 'prof'){
+            $data['profs'] = $this->professionalsModel->getAllProfessionals();
+            $this->load->view('template/header.php');
+            $this->load->view('template/top_nav.php');
+            $this->load->view('template/left_nav.php');
+            $this->load->view('users.php',$data);
+            $this->load->view('template/footer.php');
+        }else{
+            $data['profs'] = $this->professionalsModel->getAllProfessionals();
+            $this->load->view('template/header.php');
+            $this->load->view('template/top_nav.php');
+            $this->load->view('template/left_nav_prof.php');
+            $this->load->view('users.php',$data);
+            $this->load->view('template/footer.php');
+        }
     }
 
     public function profile($id){
-        $data = $this->professionalsModel->getProfessionalId($id);
-        $this->load->view('template/header.php');
-        $this->load->view('template/top_nav.php');
-        $this->load->view('template/left_nav.php');
-        $this->load->view('profile.php',$data);
-        $this->load->view('template/footer.php');
+        if(isset($_SESSION['user_type']) && $_SESSION['user_type'] != 'prof'){
+            $data = $this->professionalsModel->getProfessionalId($id);
+            $this->load->view('template/header.php');
+            $this->load->view('template/top_nav.php');
+            $this->load->view('template/left_nav.php');
+            $this->load->view('profile.php',$data);
+            $this->load->view('template/footer.php');
+        }else{
+
+            $data = $this->professionalsModel->getProfessionalId($id);
+
+            $this->load->view('template/header.php');
+            $this->load->view('template/top_nav.php');
+            $this->load->view('template/left_nav_prof.php');
+
+            $this->load->view('profile.php',$data);
+            $this->load->view('template/footer.php');
+        }
     }
 }

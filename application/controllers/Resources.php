@@ -15,11 +15,20 @@ class Resources extends CI_Controller
     }
 
     public function index(){
-        $data['resources'] = $this->ResourceModel->getAllResources();
-        $this->load->view('template/header.php');
-        $this->load->view('template/top_nav.php');
-        $this->load->view('template/left_nav.php');
-        $this->load->view('resources.php',$data);
-        $this->load->view('template/footer.php');
+        if(isset($_SESSION['user_type']) && $_SESSION['user_type'] != 'prof'){
+            $data['resources'] = $this->ResourceModel->getAllResources();
+            $this->load->view('template/header.php');
+            $this->load->view('template/top_nav.php');
+            $this->load->view('template/left_nav.php');
+            $this->load->view('resources.php',$data);
+            $this->load->view('template/footer.php');
+        }else{
+            $data['resources'] = $this->ResourceModel->getAllResources();
+            $this->load->view('template/header.php');
+            $this->load->view('template/top_nav.php');
+            $this->load->view('template/left_nav_prof.php');
+            $this->load->view('resources.php',$data);
+            $this->load->view('template/footer.php');
+        }
     }
 }
