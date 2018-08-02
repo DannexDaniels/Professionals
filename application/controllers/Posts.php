@@ -35,4 +35,5 @@ class Posts extends CI_Controller
         $this->load->view('post.php',$data);
         $this->load->view('template/footer.php');
     }
+    
 }

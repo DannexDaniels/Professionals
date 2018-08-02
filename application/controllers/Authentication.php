@@ -26,22 +26,44 @@ class Authentication extends CI_Controller
         $this->load->view('template/footer.php');
     }
 
+    public function signUpProf(){
+        $this->load->view('template/header.php');
+        $this->load->view('authentication/sign_up_prof.php');
+        $this->load->view('template/footer.php');
+    }
+
     public function authenticate(){
         $user = $this->input->post('email');
         $pass = $this->input->post('password');
         if ($this->authenticationModel->getPassword($user) != null){
-            $password = $this->authenticationModel->getPassword($user);
-            $result = $this->authenticationModel->getUser($user);
+            if ($this->authenticationModel->getUserType($user) != 'prof'){
+                $password = $this->authenticationModel->getPassword($user);
+                $result = $this->authenticationModel->getUser($user);
 
-            $this->session->set_userdata($result);
+                $this->session->set_userdata($result);
 
-            if ($password === $pass){
-                redirect(base_url('home'));
+                if ($password === $pass){
+                    redirect(base_url('home'));
+                }else{
+                    echo '<script>alert("Wrong password");</script>';
+                    $this->login();
+                }
             }else{
-                print_r("authentication failed");
+                $password = $this->authenticationModel->getPassword($user);
+                $result = $this->authenticationModel->getProf($user);
+
+                $this->session->set_userdata($result);
+
+                if ($password === $pass){
+                    redirect(base_url('profHome'));
+                }else{
+                    echo '<script>alert("Wrong password");</script>';
+                    $this->login();
+                }
             }
         }else{
             echo '<script>alert("User doesn\'t exist");</script>';
+            $this->login();
         }
     }
     public function createUser(){
@@ -61,11 +83,46 @@ class Authentication extends CI_Controller
         $auth = array(
             'userId' => 'USER'.$userId,
             'password' => $this->input->post('password'),
-            'recovery_email' => $this->input->post('email')
+            'recovery_email' => $this->input->post('email'),
+            'type' => 'user'
         );
         //sending the data to the model
         $this->authenticationModel->insertAuth($auth);
         $this->authenticationModel->insertUser($data);
+
+
+        //loading the login form
+        $this->load->view('template/header.php');
+        $this->load->view('authentication/login.php');
+        $this->load->view('template/footer.php');
+    }
+
+    public function createProf(){
+        $userId = $this->authenticationModel->countProfessionals() + 1;
+        //setting values for the table column
+        $data = array(
+            'prof_id' => 'PROF'.$userId,
+            'names' => $this->input->post('names'),
+            'gender' => $this->input->post('gender'),
+            'location' => $this->input->post('location'),
+            'dob' => $this->input->post('dob'),
+            'phone' => $this->input->post('phone'),
+            'email' => $this->input->post('email'),
+            'institution' => $this->input->post('organization'),
+            'category' => $this->input->post('specialization')
+        );
+        $auth = array(
+            'userId' => 'PROF'.$userId,
+            'password' => $this->input->post('password'),
+            'recovery_email' => $this->input->post('email'),
+            'type' => 'prof'
+        );
+
+        print_r($data);
+        print_r($auth);
+        //sending the data to the model
+        $this->authenticationModel->insertAuth($auth);
+        $this->authenticationModel->insertProf($data);
 
 
         //loading the login form

@@ -2,7 +2,7 @@
     <div class="vertical-align-middle">
         <div class="auth-box">
             <div class="left">
-                <div class="content" style="margin-top: 00px;">
+                <div class="content" style="margin-top: -500px;">
                     <div class="header">
                         <!--<div class="logo text-center"><img src="../../../assets/img/logo-dark.png" alt="Klorofil Logo"></div>-->
                         <p class="lead">Login to your account</p>

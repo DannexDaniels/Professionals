@@ -14,13 +14,19 @@
                         <div class="profile-header">
                             <div class="overlay"></div>
                             <div class="profile-main">
-                                <img src="<?php echo base_url('images')?>/users/<?php
-                                if (isset($phone)){
-                                    echo $picture;
-                                }else{
-                                    echo $_SESSION['picture'];
+                                <?php if ($_SESSION['picture']== "" || $picture== ""){
+                                    echo '';
+                                }else { ?>
+                                    <img src="<?php echo base_url('images') ?>/users/<?php
+                                    if (isset($phone)) {
+                                        echo $picture;
+                                    } else {
+                                        echo $_SESSION['picture'];
+                                    }
+                                    ?>" class="img-circle" alt="Avatar" style="width: 100px; height: 100px;">
+                                    <?php
                                 }
-                                ?>" class="img-circle" alt="Avatar" style="width: 100px; height: 100px;">
+                                ?>
                                 <h3 class="name"><?php
                                     if (isset($phone)){
                                         echo $names;
@@ -52,7 +58,7 @@
                                             <li>Birthdate <span><?php echo $_SESSION['dob']?></span></li>
                                             <li>Mobile <span><?php echo $_SESSION['phone']?></span></li>
                                             <li>Email <span><?php echo $_SESSION['email']?></span></li>
-                                            <li>Specialization <span><?php echo $_SESSION['occupation']?></span></li>
+                                            <li>Specialization <span><?php if (isset($_SESSION['occupation'])){echo $_SESSION['occupation'];}else{echo $_SESSION['cat_name'];}?></span></li>
                                             <li>Institution <span><?php echo $_SESSION['institution']?></span></li>
                                             <li>Location <span><?php echo $_SESSION['location']?></span></li>
                                     <?php

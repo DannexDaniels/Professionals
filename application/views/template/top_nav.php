@@ -22,7 +22,7 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<?php echo base_url('images')?>/users/<?php echo $_SESSION['picture']; ?>" class="img-circle" alt="Avatar"> <span><?php echo $_SESSION['names']; ?></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php if ($_SESSION['picture'] != ""){?><img src="<?php echo base_url('images')?>/users/<?php echo $_SESSION['picture'];?>" class="img-circle" alt="not set"/><?php }else{echo '';}?> <span><?php echo $_SESSION['names']; ?></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
                     <ul class="dropdown-menu">
                         <li><a href="<?php echo base_url();?>profile"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
                         <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>

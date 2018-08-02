@@ -51,9 +51,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 $route['createuser'] = 'authentication/createUser';
+$route['createprof'] = 'authentication/createProf';
+$route['profHome'] = 'home/profHome';
 $route['login'] = 'authentication/login';
 $route['authenticate'] = 'authentication/authenticate';
 $route['signup_user'] = 'authentication/signUpUser';
+$route['signup_prof'] = 'authentication/signUpProf';
 $route['logout'] = 'authentication/logout';
 $route['profile'] = 'authentication/myProfile';
 $route['profile/(:any)'] = 'professionals/profile/$1';
