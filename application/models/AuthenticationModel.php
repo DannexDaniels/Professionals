@@ -60,9 +60,19 @@ class AuthenticationModel extends CI_Model
         return $query->row_array();
     }
 
+    function getUserName($id){
+        $query = $this->db->get_where('auth',array('userId'=> $id));
+        return $query->row()->name;
+    }
+
     function getProf($email){
         $query = $this->db->get_where('profs',array('email'=> $email));
         return $query->row_array();
+    }
+
+    function getUserId($email){
+        $query = $this->db->get_where('auth',array('recovery_email'=> $email));
+        return $query->row()->userId;
     }
 
 }

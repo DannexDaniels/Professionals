@@ -22,6 +22,10 @@
     <link rel="stylesheet" href="<?php echo base_url('assets')?>/css/main.css">
     <!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
     <link rel="stylesheet" href="<?php echo base_url('assets')?>/css/demo.css">
+
+    <!--message files-->
+    <link rel="stylesheet" href="<?php echo base_url('assets')?>/css/msgstyle.css">
+
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
     <!-- ICONS -->

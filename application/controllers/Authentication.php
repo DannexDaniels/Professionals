@@ -37,6 +37,7 @@ class Authentication extends CI_Controller
         $pass = $this->input->post('password');
         if ($this->authenticationModel->getPassword($user) != null){
             $this->session->set_userdata('user_type',$this->authenticationModel->getUserType($user));
+            $this->session->set_userdata('current_user_id',$this->authenticationModel->getUserId($user));
             if (isset($_SESSION['user_type']) && $_SESSION['user_type'] != 'prof'){
                 $password = $this->authenticationModel->getPassword($user);
                 $result = $this->authenticationModel->getUser($user);
@@ -120,9 +121,6 @@ class Authentication extends CI_Controller
             'recovery_email' => $this->input->post('email'),
             'type' => 'prof'
         );
-
-        print_r($data);
-        print_r($auth);
         //sending the data to the model
         $this->authenticationModel->insertAuth($auth);
         $this->authenticationModel->insertProf($data);
