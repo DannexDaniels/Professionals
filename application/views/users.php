@@ -49,9 +49,11 @@
                                     <p>
                                         <small class="muted"><?php echo $prof['cat_name'];?></small></p>
                                     <div class="media-option btn-group shaded-icon">
-                                        <button class="btn btn-small">
-                                            <i class="icon-envelope"></i>
-                                        </button>
+                                        <a href="<?php echo 'sendmessage/'.$prof['prof_id']?>">
+                                            <button class="btn btn-small">
+                                                <i class="icon-envelope"></i>
+                                            </button>
+                                        </a>
                                         <button class="btn btn-small">
                                             <i class="icon-share-alt"></i>
                                         </button>
